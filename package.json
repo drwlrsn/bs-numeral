@@ -1,0 +1,24 @@
+{
+  "name": "bs-numeral",
+  "version": "0.1.0",
+  "description": "BuckleScript bindings for Numeral.js",
+  "main": "lib/js/src/numeralRe.js",
+  "repository": "git@github.com:drwlrsn/bs-numeral.git",
+  "author": "Drew Larson <me@drew.xxx>",
+  "license": "MIT",
+  "scripts": {
+    "clean": "bsb -clean-world",
+    "build": "bsb -make-world",
+    "pretest": "yarn run build",
+    "prepublish": "yarn run clean && yarn run build",
+    "test": "jest",
+    "start": "yarn run build -- -w"
+  },
+  "devDependencies": {
+    "bs-jest": "^0.1.0",
+    "bs-platform": "^1.7.1",
+    "husky": "^0.13.3",
+    "jest": "^19.0.2",
+    "numeral": "^2.0.6"
+  }
+}
