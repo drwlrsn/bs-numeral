@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/drwlrsn/bs-numeral.svg?branch=master)](https://travis-ci.org/drwlrsn/bs-numeral)
 
 # bs-numeral
-[BuckleScript](https://github.com/bloomberg/bucklescript) bindings for [Numeral.js](https://http://numeraljs.com/).
+[BuckleScript](https://github.com/bloomberg/bucklescript) bindings for [Numeral.js](https://numeraljs.com/).
 
 ## Status
 
