@@ -1,48 +1,48 @@
-type float_or_str 'a =
-  | Float :float_or_str float
-  | String :float_or_str string;
+type float_or_str('a) =
+  | Float: float_or_str(float)
+  | String: float_or_str(string);
 
 module Numeral = {
   type t;
-  external value : t => float = "value" [@@bs.send];
-  external format : string => string = "" [@@bs.send.pipe : t];
+  [@bs.send] external value : t => float = "value";
+  [@bs.send.pipe : t] external format : string => string = "";
   /* Functions */
-  external clone : t = "" [@@bs.send.pipe : t];
-  external mutableAdd : t => float => unit = "add" [@@bs.send];
-  let add ::num numeral => {
-    let clone = clone numeral;
-    mutableAdd clone num;
+  [@bs.send.pipe : t] external clone : t = "";
+  [@bs.send] external mutableAdd : (t, float) => unit = "add";
+  let add = (~num, numeral) => {
+    let clone = clone(numeral);
+    mutableAdd(clone, num);
     clone
   };
-  external mutableSubtract : t => float => unit = "subtract" [@@bs.send];
-  let subtract ::num numeral => {
-    let clone = clone numeral;
-    mutableSubtract clone num;
+  [@bs.send] external mutableSubtract : (t, float) => unit = "subtract";
+  let subtract = (~num, numeral) => {
+    let clone = clone(numeral);
+    mutableSubtract(clone, num);
     clone
   };
-  external mutableDivide : t => float => unit = "divide" [@@bs.send];
-  let divide ::num numeral => {
-    let clone = clone numeral;
-    mutableDivide clone num;
+  [@bs.send] external mutableDivide : (t, float) => unit = "divide";
+  let divide = (~num, numeral) => {
+    let clone = clone(numeral);
+    mutableDivide(clone, num);
     clone
   };
-  external mutableMultiply : t => float => unit = "multiply" [@@bs.send];
-  let multiply ::num numeral => {
-    let clone = clone numeral;
-    mutableMultiply clone num;
+  [@bs.send] external mutableMultiply : (t, float) => unit = "multiply";
+  let multiply = (~num, numeral) => {
+    let clone = clone(numeral);
+    mutableMultiply(clone, num);
     clone
   };
-  external difference : float => float = "" [@@bs.send.pipe : t];
+  [@bs.send.pipe : t] external difference : float => float = "";
 };
 
-external numeralDefaultFormat : (float_or_str 'a) [@bs.ignore] => 'a => Numeral.t =
-  "numeral" [@@bs.module];
+[@bs.module]
+external numeralDefaultFormat : ([@bs.ignore] float_or_str('a), 'a) => Numeral.t = "numeral";
 
-external numeralWithFormat : string => (float_or_str 'a) [@bs.ignore] => 'a => Numeral.t =
-  "numeral" [@@bs.module];
+[@bs.module]
+external numeralWithFormat : (string, [@bs.ignore] float_or_str('a), 'a) => Numeral.t = "numeral";
 
-let numeral ::format=? value =>
+let numeral = (~format=?, value) =>
   switch format {
-  | Some f => numeralWithFormat f value
-  | None => numeralDefaultFormat value
+  | Some(f) => numeralWithFormat(f, value)
+  | None => numeralDefaultFormat(value)
   };
