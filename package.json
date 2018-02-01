@@ -16,9 +16,9 @@
     "start": "yarn run build -- -w"
   },
   "devDependencies": {
-    "bs-jest": "^0.3.2",
+    "@glennsl/bs-jest": "^0.4.0",
     "bs-platform": "^2.1.0",
-    "jest": "^19.0.2",
+    "jest": "^22.1.4",
     "numeral": "^2.0.6",
     "standard-version": "^4.2.0"
   }
