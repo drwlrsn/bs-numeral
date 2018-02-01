@@ -2,14 +2,15 @@
   "name" : "bs-numeral",
   "sources" : [
     {
-      "dir": "src",
+      "dir": "src"
     },
     {
       "dir": "__tests__",
       "type": "dev"
     }
   ],
-  "bs-dependencies": [
-    "bs-jest"
+  "refmt": 3,
+  "bs-dev-dependencies": [
+    "@glennsl/bs-jest"
   ]
 }
